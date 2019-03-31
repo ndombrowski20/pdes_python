@@ -37,8 +37,9 @@ def trapezoidal_int1(f, xset):
 # now we're starting with simpson's one third rule
 
 def simpson_333_v0(f, upper, lower, n):
-    if n % 2 != 0:
-        raise Exception("i only work with an even number of partitions")
+    if paranoid:
+        if n % 2 != 0:
+            raise Exception("i only work with an even number of partitions")
 
     h = abs(upper - lower) / n
     S = f(upper) + f(lower)
@@ -58,8 +59,9 @@ def simpson_333_v0(f, upper, lower, n):
 # not as good as the 1/3 rule
 
 def simpson_375_v0(f, upper, lower, n):
-    if n % 3 != 0:
-        raise Exception("needs to be divisible by three, homes")
+    if paranoid:
+        if n % 3 != 0:
+            raise Exception("needs to be divisible by three, homes")
 
     h = abs(upper - lower) / n
 
@@ -82,6 +84,12 @@ def double_f(a, b):
 
 
 def double_int_333_v0(f, ax, bx, ay, by, nx, ny):
+    if paranoid:
+        if nx % 2 != 0:
+            raise Exception("i only work with an even number of partitions")
+        if ny % 2 != 0:
+            raise Exception("i only work with an even number of partitions")
+
     hx = (bx - ax) / nx
     hy = (by - ay) / ny
 
